@@ -12,6 +12,7 @@ import br.com.joaogosmani.jgprojetos.enums.UF;
 import br.com.joaogosmani.jgprojetos.models.Funcionario;
 import br.com.joaogosmani.jgprojetos.repositories.CargoRepository;
 import br.com.joaogosmani.jgprojetos.repositories.FuncionarioRepository;
+import br.com.joaogosmani.jgprojetos.utils.SenhaUtils;
 
 @Controller
 @RequestMapping("/funcionarios")
@@ -63,8 +64,21 @@ public class FuncionarioController {
         return modelAndView;
     }
 
-    @PostMapping({"/cadastrar", "/{id}/editar"})
-    public String salvar(Funcionario funcionario) {
+    @PostMapping("/cadastrar")
+    public String cadastrar(Funcionario funcionario) {
+        String senhaEncriptada = SenhaUtils.encode(funcionario.getSenha());
+
+        funcionario.setSenha(senhaEncriptada);
+        funcionarioRepository.save(funcionario);
+
+        return "redirect:/funcionarios";
+    }
+
+    @PostMapping("/{id}/editar")
+    public String editar(Funcionario funcionario, @PathVariable Long id) {
+        String senhaAtual = funcionarioRepository.getOne(id).getSenha();
+        funcionario.setSenha(senhaAtual);
+
         funcionarioRepository.save(funcionario);
 
         return "redirect:/funcionarios";
