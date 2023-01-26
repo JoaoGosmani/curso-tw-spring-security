@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import br.com.joaogosmani.jgprojetos.services.UserDetailsServiceImpl;
 
@@ -39,6 +40,12 @@ public class WebSecurityConfig {
             .loginPage("/login")
             .defaultSuccessUrl("/clientes")
             .permitAll();
+
+        http.logout()
+            .logoutRequestMatcher(
+                new AntPathRequestMatcher("/logout", "GET")
+            )
+            .logoutSuccessUrl("/login");
 
         return http.build();
     }
