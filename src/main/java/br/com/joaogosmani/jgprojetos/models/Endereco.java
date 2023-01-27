@@ -1,10 +1,11 @@
 package br.com.joaogosmani.jgprojetos.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 import br.com.joaogosmani.jgprojetos.enums.UF;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 
 @Entity
 public class Endereco extends Entidade {

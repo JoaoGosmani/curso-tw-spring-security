@@ -1,7 +1,7 @@
 package br.com.joaogosmani.jgprojetos.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
 @Entity
 public class Cargo extends Entidade {

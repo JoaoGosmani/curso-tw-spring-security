@@ -2,15 +2,15 @@ package br.com.joaogosmani.jgprojetos.models;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.OneToOne;
 
 @MappedSuperclass
 public abstract class Pessoa extends Entidade {
