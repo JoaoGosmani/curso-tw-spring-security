@@ -3,7 +3,10 @@ package br.com.joaogosmani.jgprojetos.models;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import br.com.joaogosmani.jgprojetos.enums.Perfil;
 
 public class UserDetailsImpl implements UserDetails {
 
@@ -15,8 +18,12 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Auto-generated method stub
-        return null;
+        Perfil perfil = 
+            funcionario.getCargo().getNome().equals("Gerente") ? 
+            Perfil.ADMIN : 
+            Perfil.USER;
+
+        return AuthorityUtils.createAuthorityList(perfil.toString());
     }
 
     @Override
